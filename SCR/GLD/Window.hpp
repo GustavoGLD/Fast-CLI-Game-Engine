@@ -51,7 +51,6 @@ public:
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 buffer +=  map[y][x];
-                //buffer += ' ';
             }
             buffer += "\n";
         }
