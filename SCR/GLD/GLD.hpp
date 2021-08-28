@@ -22,9 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include "Vector2.hpp"
+#include "Vectors.hpp"
 #include "Drawable.hpp"
 #include "Point.hpp"
-#include "Line.hpp"
+#include "VertexArray.hpp"
 #include "Rectangle.hpp"
 #include "Window.hpp"

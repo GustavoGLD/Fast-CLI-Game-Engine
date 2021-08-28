@@ -1,4 +1,3 @@
 all:
-	g++ -c SCR/main.cpp
-	g++ main.o -o game.out -lsfml-graphics -lsfml-window -lsfml-system
+	g++ SCR/main.cpp -o game.out
 	./game.out

@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Vector2.hpp"
+#include "Vectors.hpp"
 #include "Drawable.hpp"
 #include "TimeImpl.hpp"
 
@@ -43,10 +43,18 @@ public:
         drawable.draw(map);
     }
 
+    
+
     void display() {
         setFrameInit();
 
-        system("clear");
+        #ifdef _WIN32 
+            system("cls");
+        #endif
+        #ifdef __linux__
+            system("clear");
+        #endif
+
         std::string buffer;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {

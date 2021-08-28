@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Vector2.hpp"
+#include "Vectors.hpp"
 
 namespace gld 
 {
@@ -28,8 +28,8 @@ void drawLine(gld::Vector2f vert1, gld::Vector2f vert2,  std::string filling, st
 
     for (int i = 0; i < steps; i++) {
         gld::Vector2f new_pos;
-        new_pos.x = vert1.x + (increment_x * i);
-        new_pos.y = vert1.y + (increment_y * i);
+        new_pos.x = vert2.x + (increment_x * i);
+        new_pos.y = vert2.y + (increment_y * i);
 
         gld::drawPoint(new_pos, filling, map);
     }
@@ -61,7 +61,7 @@ protected:
 
 public:
     virtual void draw(std::vector<std::vector<std::string>>& map) = 0;
-    virtual void setFillColor(gld::Color color) {
+    void setFillColor(gld::Color color) {
         this->color = "\x1B[" + std::to_string(color) + "m \x1B[0m";
     }
 };
