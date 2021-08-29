@@ -19,6 +19,6 @@ int main() {
 
         std::cout << "FPS: " << 1 / window.getDeltaTime() << "\n";
     }
-
+    //UMA FUCKING LINHA
     return 0;
 }
