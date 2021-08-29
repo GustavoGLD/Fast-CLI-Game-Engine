@@ -6,7 +6,7 @@ int main() {
     gld::Window window(160, 40);
 
     gld::VertexArray vertices;
-    vertices.setPrimitiveType(gld::LINE_LOOP);
+    vertices.setPrimitiveType(gld::TRIANGLES);
     vertices.push_back(gld::Vector2f(2.0f, 2.0f));
     vertices.push_back(gld::Vector2f(45.0f, 30.0f));
     vertices.push_back(gld::Vector2f(130.0f, 25.0f));
