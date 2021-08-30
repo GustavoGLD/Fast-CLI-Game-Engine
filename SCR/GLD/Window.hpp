@@ -26,6 +26,8 @@ public:
 
         this->height = size.y;
         this->width  = size.x;
+
+        std::ios_base::sync_with_stdio(false);
     }
 
     Window(unsigned int width,unsigned int height) {
@@ -33,17 +35,18 @@ public:
 
         this->height = height;
         this->width  = width;
+        
+        map = std::vector<std::vector<std::string>>(height, std::vector<std::string>(width));
     }
 
     void clear(std::string backgroud = "\x1B[40m ") {
-        map.clear();
         
         for (int y = 0; y < height; y++) {
-            std::vector<std::string> new_line;
+
             for (int x = 0; x < width; x++) {
-                new_line.push_back(backgroud);
+                map[y][x] = backgroud;
             }
-            map.push_back(new_line);
+
         }
     }
     
@@ -58,9 +61,19 @@ public:
         ClearPromp();
 
         std::string buffer;
+        std::string last_color;
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                buffer +=  map[y][x];
+
+                if (map[y][x] != last_color){
+                       buffer += map[y][x];
+                    last_color = map[y][x];
+                }
+                else {
+                    buffer += " ";
+                }
+
             }
             buffer += "\n";
         }

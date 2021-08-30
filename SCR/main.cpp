@@ -21,7 +21,7 @@ int main() {
         window.draw(vertices);
         window.display();
 
-        //std::cout << "FPS: " << 1 / window.getDeltaTime() << "\n";
+        std::cout << "FPS: " << 1 / window.getDeltaTime() << "\n";
     }
 
     return 0;
