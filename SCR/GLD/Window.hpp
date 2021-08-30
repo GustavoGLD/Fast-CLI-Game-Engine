@@ -4,6 +4,14 @@
 #include "Drawable.hpp"
 #include "TimeImpl.hpp"
 
+void ClearPromt();
+#ifdef _WIN32 
+    #define ClearPromp() system("cls");
+#endif
+#ifdef __unix__
+    #define ClearPromp() system("clear");
+#endif
+
 namespace gld
 {
 
@@ -27,9 +35,9 @@ public:
         this->width  = width;
     }
 
-    void clear(std::string backgroud = ".") {
+    void clear(std::string backgroud = "\x1B[40m ") {
         map.clear();
-
+        
         for (int y = 0; y < height; y++) {
             std::vector<std::string> new_line;
             for (int x = 0; x < width; x++) {
@@ -43,17 +51,11 @@ public:
         drawable.draw(map);
     }
 
-    
 
     void display() {
         setFrameInit();
 
-        #ifdef _WIN32 
-            system("cls");
-        #endif
-        #ifdef __linux__
-            system("clear");
-        #endif
+        ClearPromp();
 
         std::string buffer;
         for (int y = 0; y < height; y++) {
@@ -63,7 +65,8 @@ public:
             buffer += "\n";
         }
 
-        printf("%s", buffer.c_str());
+        std::cout.write(buffer.data(), buffer.size());
+
     }
 };
 

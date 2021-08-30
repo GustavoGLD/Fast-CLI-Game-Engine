@@ -4,7 +4,8 @@
 #include "Vectors.hpp"
 #include "Drawable.hpp"
 
-#define DRAW_DECLARING_PARAMETER const std::vector<gld::Vector2f>& vertices, std::string color, std::vector<std::vector<std::string>>& map
+typedef std::vector<std::vector<std::string>>& Map;
+#define DRAW_DECLARING_PARAMETER const std::vector<gld::Vector2f>& vertices, std::string color, Map map
 typedef std::function<void(DRAW_DECLARING_PARAMETER)> DrawFunc;
 
 namespace gld
@@ -35,26 +36,23 @@ DrawFunc drawLineLoop  = [](DRAW_DECLARING_PARAMETER) {
 DrawFunc drawTriangles = [](DRAW_DECLARING_PARAMETER) {
 
     int triangles = (int)(vertices.size() / 3);
-    
+
     for (int i = 0; i < triangles*3; i+=3) {
-        
-        float distX = vertices[i+1].x - vertices[i].x;
-        float distY = vertices[i+1].y - vertices[i].y;
 
-        int steps = std::abs(distX) > std::abs(distY) ? std::abs(distX) : std::abs(distY);
-        steps *= 2;
+        MakingLine line1(vertices[i], vertices[i+1]);
+        MakingLine line2(vertices[i], vertices[i+2]);
 
-        float increment_x = distX / steps;
-        float increment_y = distY / steps;
+        int steps = line1.steps > line2.steps ? line1.steps : line2.steps;
+        line1.setSteps(steps);
+        line2.setSteps(steps);
 
         for (int s = 0; s < steps; s++) {
-            gld::Vector2f ray1;
-            ray1.x = vertices[i].x + (increment_x * s);
-            ray1.y = vertices[i].y + (increment_y * s);
+            line1.updateNextPos();
+            line2.updateNextPos();
 
-            gld::drawPoint(ray1, color, map);
+            gld::drawLine(line1.next_pos, line2.next_pos, color, map);
         }
-        
+
     }
 
 };

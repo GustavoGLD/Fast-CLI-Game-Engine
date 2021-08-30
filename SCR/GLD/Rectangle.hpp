@@ -25,15 +25,15 @@ public:
         this->size = gld::Vector2f(width, height);
     }
 
-    void setPosition(gld::Vector2f position) {
+    inline void setPosition(gld::Vector2f position) {
         this->position = position;
     }
 
-    void setPosition(float x, float y) {
+    inline void setPosition(float x, float y) {
         this->position = {x, y};
     }
 
-    void draw(std::vector<std::vector<std::string>>& map) {
+    inline void draw(std::vector<std::vector<std::string>>& map) {
         float distX = std::sin(angle * M_PI/180.0f) * size.y;
         float distY = std::cos(angle * M_PI/180.0f) * size.y;
 
