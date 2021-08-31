@@ -1,3 +1,3 @@
 all:
-	g++ SCR/main.cpp -o game.out -g
+	g++ SRC/main.cpp -o game.out -g
 	./game.out
