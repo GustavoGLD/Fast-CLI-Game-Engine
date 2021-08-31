@@ -69,26 +69,25 @@ void drawLine(gld::Vector2f vert1, gld::Vector2f vert2,  std::string color, std:
     });
 }
 
-enum Color {
-    Default      = 49,
-    Black        = 40,
-    Red          = 41,
-    Green        = 42,
-    Yellow       = 43,
-    Blue         = 44,
-    Megenta      = 45,
-    Cyan         = 46,
-    LightGray    = 47,
-    DarkGray     = 100,
-    LightRed     = 101,
-    LightGreen   = 102,
-    LightYellow  = 103,
-    LightBlue    = 104,
-    LightMagenta = 105,
-    LightCyan    = 106,
-    White        = 107
+struct Color {
+    uint8_t R = 255, G = 255, B = 255;
+
+    Color(uint8_t R, uint8_t G, uint8_t B) {
+        this->R = R; this->G = G; this->B;
+    }
+
 };
 
+namespace getColor {
+    const Color Red     = {255, 0, 0};
+    const Color Green   = {0, 255, 0};
+    const Color Blue    = {0, 0, 255};
+    const Color Yellow  = {255, 255, 0};
+    const Color Cyan    = {0, 255, 255};
+    const Color Magenta = {255, 0, 255};
+    const Color Gray    = {129, 129, 129};
+    const Color Silver  = {172, 172, 172};
+}
 
 
 class Drawable {
@@ -107,6 +106,10 @@ public:
         int uColor = 16 + (36 * uR) + (6 * uG) + uB;
 
         this->color = "\x1B[48;5;" + std::to_string(uColor) + "m ";
+    }
+
+    inline void setFillColor(const gld::Color& color) {
+        setFillColor(color.R, color.G, color.B);
     }
 };
 
