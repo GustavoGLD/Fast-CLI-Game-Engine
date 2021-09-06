@@ -1,14 +1,17 @@
 #pragma once
 #include <string>
+#include <thread>
 #include "Vectors.hpp"
 #include "Drawable.hpp"
 #include "Impl/TimeImpl.hpp"
+#include "Colors.hpp"
+#include "Input.hpp"
 
-#ifdef _WIN32 
-    #define ClearPromp() system("cls");
+#if defined(_WIN32) || defined(_WIN64)
+    #define ClearPrompt() system("cls");
 #endif
-#ifdef __unix__
-    #define ClearPromp() system("clear");
+#if defined(__linux__) || defined(__FreeBSD__)
+    #define ClearPrompt() system("clear");
 #endif
 
 namespace gld
@@ -18,27 +21,22 @@ class Window : public gld::Time {
 private:
     unsigned int height, width;
     std::vector<std::vector<std::string>> map;
+    std::thread input_thr;
 
 public:
-    Window(gld::Vector2f size) {
-        setTimeInit();
 
-        this->height = size.y;
-        this->width  = size.x;
-
-        std::ios_base::sync_with_stdio(false);
-    }
-
-    Window(unsigned int width,unsigned int height) {
+    inline Window(unsigned int width,unsigned int height, bool sync_with_stdio = false) {
         setTimeInit();
 
         this->height = height;
         this->width  = width;
         
+        std::ios_base::sync_with_stdio(sync_with_stdio);
         map = std::vector<std::vector<std::string>>(height, std::vector<std::string>(width));
+        input_thr = std::thread(getInput);
     }
 
-    void clear(std::string backgroud = "\x1B[40m ") {
+    inline void clear(gld::AnsiColor backgroud = gld::ANSI::Black) {
         
         for (int y = 0; y < height; y++) {
 
@@ -48,19 +46,27 @@ public:
 
         }
     }
+
+    inline void clear(gld::RgbColor background) {
+        clear(gld::getAnsiColor(background));
+    }
+
+    inline void clear(uint8_t R, uint8_t G, uint8_t B) {
+        clear(gld::getAnsiColor(R, G, B));
+    }
     
-    void draw(gld::Drawable& drawable) {
+    inline void draw(gld::Drawable& drawable) {
         drawable.draw(map);
     }
 
 
-    void display() {
+    inline void display() {
         setFrameInit();
 
-        ClearPromp();
+        ClearPrompt();
 
-        std::string buffer;
-        std::string last_color;
+        std::string    buffer;
+        gld::AnsiColor last_color;
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -74,10 +80,10 @@ public:
                 }
 
             }
-            buffer += "\n";
+            buffer += "\r\n";
         }
 
-        std::cout.write(buffer.data(), buffer.size());
+        std::cout.write(buffer.data(), buffer.size()); 
 
     }
 };

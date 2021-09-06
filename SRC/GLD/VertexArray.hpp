@@ -23,16 +23,19 @@ private:
     gld::PrimitiveType type = gld::LINE_LOOP;
 
 public:
+
+    using vector::vector;
     using vector::push_back;
-    using vector::operator[];
+    using vector::erase;
     using vector::begin;
     using vector::end;
+    using vector::operator[];
 
-    void draw(std::vector<std::vector<std::string>>& map) {
+    inline void draw(std::vector<std::vector<std::string>>& map) {
         drawFunc[type](this[0], color, map);
     }
 
-    void setPrimitiveType(gld::PrimitiveType type) {
+    inline void setPrimitiveType(const gld::PrimitiveType& type) {
         this->type = type;
     }
 };

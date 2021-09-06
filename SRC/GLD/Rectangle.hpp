@@ -13,15 +13,15 @@ public:
     
     float angle = 0.0f;
     
-    Rectangle() {
+    inline Rectangle() {
         position = gld::Vector2f(0.0f, 0.0f);
     }
 
-    Rectangle(gld::Vector2f size) {
+    inline Rectangle(gld::Vector2f size) {
         this->size = size;
     }
     
-    Rectangle(float width, float height) {
+    inline Rectangle(float width, float height) {
         this->size = gld::Vector2f(width, height);
     }
 
@@ -42,10 +42,10 @@ public:
         steps *= 1.5;
 
         float increment_x =  distX / steps;
-        float increment_y = (distY / steps) / 2;
+        float increment_y = (distY / steps) / 2.5;
 
         float incr_vet_x =  std::cos(angle * M_PI/180.0f) * size.x;
-        float incr_vet_y = (std::sin(angle * M_PI/180.0f) * size.x) / 2;
+        float incr_vet_y = (std::sin(angle * M_PI/180.0f) * size.x) / 2.5;
     
         for (int i = 0; i < steps; i++) {
             gld::Vector2f ray, rayDir;

@@ -1,3 +1,3 @@
 all:
-	g++ SRC/main.cpp -o game.out -g
+	g++ SRC/main.cpp -o game.out -pthread -lncurses -g
 	./game.out
