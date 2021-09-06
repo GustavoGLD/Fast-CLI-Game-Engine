@@ -4,7 +4,7 @@
 
 using namespace std::chrono;
 
-namespace gld 
+namespace gld
 {
 
 ////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ protected:
     }
 
     inline void setFrameInit() {
-        time_point now = high_resolution_clock::now();
+        high_resolution_clock::time_point now = high_resolution_clock::now();
         _delta_time = duration_cast<std::chrono::duration<double>>(now - _last_frame).count();
         _last_frame = high_resolution_clock::now();
     }
