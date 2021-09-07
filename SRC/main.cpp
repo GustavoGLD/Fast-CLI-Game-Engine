@@ -10,22 +10,22 @@ int main() {
     rec.setFillColor(gld::RGB::Green);
 
     gld::Input::setCallback([&](gld::Key c) {
-        if (c[0] == 'd' || c[0] == 'D') {
+        gld::Key up    = {(char)65, (char)91, (char)27};
+        gld::Key right = {(char)67, (char)91, (char)27};
+        gld::Key down  = {(char)66, (char)91, (char)27};
+        gld::Key left  = {(char)68, (char)91, (char)27};
+
+        if (c == right) {
             rec.position = rec.position + gld::Vector2f(5.0f, 0.0f);
         }
-        if (c[0] == 'a' || c[0] == 'A') {
+        if (c == left) {
             rec.position = rec.position + gld::Vector2f(-5.0f, 0.0f);
         }
-        if (c[0] == 'w' || c[0] == 'W') {
+        if (c == up) {
             rec.position = rec.position + gld::Vector2f(0.0f, -2.0f);
         }
-        if (c[0] == 's' || c[0] == 'S') {
+        if (c == down) {
             rec.position = rec.position + gld::Vector2f(0.0f, 2.0f);
-        }
-
-        std::cout << "\n";
-        for (int x = 0; x < 3; x++) {
-            std::cout << (int)c[x] << "\t";
         }
 
     });
@@ -34,7 +34,7 @@ int main() {
 
         window.clear();
         window.draw(rec);
-        //window.display();
+        window.display();
 
     }
 

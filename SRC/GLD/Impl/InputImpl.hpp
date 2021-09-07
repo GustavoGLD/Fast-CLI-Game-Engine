@@ -33,8 +33,8 @@ void getInput();
 
             char last_key = getchar();
 
-            Input::lastkeys.push_back(last_key);
-            Input::lastkeys.pop_front();
+            Input::lastkeys.push_front(last_key);
+            Input::lastkeys.pop_back();
 
             Input::Callback(Input::lastkeys);
 
