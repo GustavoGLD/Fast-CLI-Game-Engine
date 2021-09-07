@@ -27,4 +27,6 @@ SOFTWARE.
 #include "Point.hpp"
 #include "VertexArray.hpp"
 #include "Rectangle.hpp"
+#include "Keyboard.hpp"
+#include "Input.hpp"
 #include "Window.hpp"

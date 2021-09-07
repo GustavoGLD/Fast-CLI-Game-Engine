@@ -22,12 +22,7 @@ int main() {
         if (c == 's' || c == 'S') {
             rec.position = rec.position + gld::Vector2f(0.0f, 2.0f);
         }
-        if (c == 'q' || c == 'Q') {
-          rec.angle -= 5.0f;
-        }
-        if (c == 'e' || c == 'E') {
-          rec.angle += 5.0f;
-        }
+
     });
 
     while (true) {

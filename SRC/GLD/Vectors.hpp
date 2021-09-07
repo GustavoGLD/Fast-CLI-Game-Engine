@@ -2,7 +2,8 @@
 #include <iostream>
 #include <cmath>
 
-namespace gld 
+
+namespace gld
 {
 
 template<typename T>

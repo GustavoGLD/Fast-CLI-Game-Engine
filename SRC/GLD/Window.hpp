@@ -4,6 +4,7 @@
 #include "Vectors.hpp"
 #include "Drawable.hpp"
 #include "Impl/TimeImpl.hpp"
+#include "Impl/InputImpl.hpp"
 #include "Colors.hpp"
 #include "Input.hpp"
 
@@ -30,14 +31,14 @@ public:
 
         this->height = height;
         this->width  = width;
-        
+
         std::ios_base::sync_with_stdio(sync_with_stdio);
         map = std::vector<std::vector<std::string>>(height, std::vector<std::string>(width));
-        input_thr = std::thread(getInput);
+        input_thr = std::thread(Input::getInput);
     }
 
     inline void clear(gld::AnsiColor backgroud = gld::ANSI::Black) {
-        
+
         for (int y = 0; y < height; y++) {
 
             for (int x = 0; x < width; x++) {
@@ -54,7 +55,7 @@ public:
     inline void clear(uint8_t R, uint8_t G, uint8_t B) {
         clear(gld::getAnsiColor(R, G, B));
     }
-    
+
     inline void draw(gld::Drawable& drawable) {
         drawable.draw(map);
     }
@@ -83,7 +84,7 @@ public:
             buffer += "\r\n";
         }
 
-        std::cout.write(buffer.data(), buffer.size()); 
+        std::cout.write(buffer.data(), buffer.size());
 
     }
 };
