@@ -9,18 +9,23 @@ int main() {
     rec.setPosition(50, 10);
     rec.setFillColor(gld::RGB::Green);
 
-    gld::Input::setCallback([&](char c) {
-        if (c == 'd' || c == 'D') {
+    gld::Input::setCallback([&](gld::Key c) {
+        if (c[0] == 'd' || c[0] == 'D') {
             rec.position = rec.position + gld::Vector2f(5.0f, 0.0f);
         }
-        if (c == 'a' || c == 'A') {
+        if (c[0] == 'a' || c[0] == 'A') {
             rec.position = rec.position + gld::Vector2f(-5.0f, 0.0f);
         }
-        if (c == 'w' || c == 'W') {
+        if (c[0] == 'w' || c[0] == 'W') {
             rec.position = rec.position + gld::Vector2f(0.0f, -2.0f);
         }
-        if (c == 's' || c == 'S') {
+        if (c[0] == 's' || c[0] == 'S') {
             rec.position = rec.position + gld::Vector2f(0.0f, 2.0f);
+        }
+
+        std::cout << "\n";
+        for (int x = 0; x < 3; x++) {
+            std::cout << (int)c[x] << "\t";
         }
 
     });
@@ -29,7 +34,7 @@ int main() {
 
         window.clear();
         window.draw(rec);
-        window.display();
+        //window.display();
 
     }
 

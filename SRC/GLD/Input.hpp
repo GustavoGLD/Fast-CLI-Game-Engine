@@ -11,7 +11,7 @@ namespace Input {
 
     #include "Impl/InputImpl.hpp"
 
-    void setCallback(std::function<void(char key)> Inputs_Callback) {
+    void setCallback(std::function<void(Key key)> Inputs_Callback) {
         gld::Input::Callback = Inputs_Callback;
     }
 
