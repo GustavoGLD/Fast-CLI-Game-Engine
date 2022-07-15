@@ -14,7 +14,9 @@ int main() {
         gld::Key right = {(char)67, (char)91, (char)27};
         gld::Key down  = {(char)66, (char)91, (char)27};
         gld::Key left  = {(char)68, (char)91, (char)27};
-
+        
+        //this below is ugly, made just for testing
+        
         if (c == right) {
             rec.position = rec.position + gld::Vector2f(5.0f, 0.0f);
         }
